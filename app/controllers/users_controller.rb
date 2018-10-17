@@ -12,6 +12,16 @@ class UsersController < ApplicationController
         end
     end 
 
+    post '/signup' do
+        if params[:username] == "" || params[:email] == "" || params[:password] == ""
+            redirect '/signup'
+        else 
+            @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+            session[:user_id] = @user.id 
+            redirect '/bottles'
+        end
+    end
+
     get '/login' do 
         erb :'users/login'
     end 
@@ -24,7 +34,16 @@ class UsersController < ApplicationController
         else
           redirect '/signup'
         end
-      end
+    end
+
+    post '/logout' do 
+        if logged_in?
+            session.clear    
+            redirect '/login'
+        else
+            redirect '/login'
+        end
+    end
 
 
 end
