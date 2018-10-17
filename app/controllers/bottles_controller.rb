@@ -1,0 +1,3 @@
+class BottlesController < ApplicationController 
+
+end
