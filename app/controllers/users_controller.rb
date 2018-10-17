@@ -1,10 +1,10 @@
 class UsersController < ApplicationController 
 
-    get '/users/index' do 
+    get '/index' do 
         erb :'users/index'
     end 
 
-    get '/users/signup' do 
+    get '/signup' do 
         if !logged_in? 
             erb :'users/signup'
         else
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
         end
     end 
 
-    get '/users/login' do 
+    get '/login' do 
         erb :'users/login'
     end 
 
