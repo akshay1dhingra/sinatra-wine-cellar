@@ -1,10 +1,10 @@
-<h3><%= @bottle.name %></h3><br>
+<h2><%= @bottle.name %></h3><br>
+
+<p><h3>Grape Type:</h3> <%= @bottle.grape %></p>
+<p><h3>Bottle Year:</h3> <%= @bottle.year %></p>
+<p><h3>Bottle Location:</h3> <%= @bottle.location %></p>
 
 <br>
-
-<h2><%= @bottle.grape %></h2><br>
-<h2><%= @bottle.year %></h2><br>
-<h2><%= @bottle.location %></h2><br>
 
 <form action="/bottles/<%= @bottle.id %>/delete" method="POST">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
