@@ -1,0 +1,19 @@
+<h1>Update Bottle</h1>
+
+<form action="/bottles/<%=@bottle.id%>/edit" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+
+    <label>Name:</label>
+    <input type="text" name="name" id="name" value="<%=@bottle.name%>"><br>
+    <label>Grape:</label>
+    <input type="text" name="grape" id="grape" value="<%=@bottle.grape%>"><br>
+     <label>Year:</label>
+    <input type="text" name="year" id="year" value="<%=@bottle.year%>"><br>
+    <label>Location:</label>
+     <input type="text" name="location" id="location" value="<%=@bottle.location%>"><br>
+
+  <input type="submit" value="Edit Bottle">
+</form>
+
+<br>
+<a href="/users/index">Return to your Cellar</a><br />
