@@ -1,0 +1,19 @@
+<h3><%= @bottle.name %></h3><br>
+
+<br>
+
+<h2><%= @bottle.grape %></h2><br>
+<h2><%= @bottle.year %></h2><br>
+<h2><%= @bottle.location %></h2><br>
+
+<form action="/bottles/<%= @bottle.id %>/delete" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Remove Bottle From Cellar">
+</form>
+
+<br>
+
+<form action="/bottles/<%= @bottle.id %>/edit" method="PATCH">
+  <input type="hidden" name"_method" value="EDIT">
+  <input type="submit" value="Edit Bottle">
+</form>
