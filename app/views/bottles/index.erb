@@ -1,0 +1,13 @@
+<h1>Welcome to your Wine Cellar!</h1><br>
+<br>
+<h3>Here is a list of your wines!</h3><br>
+
+<% current_user.bottles.each do |bottle| %>
+    <li><a href="/bottles/<%=bottle.id%>"><%= bottle.name %> </a></li><br>
+<%end%>
+
+<br>
+
+<h4><a href='/bottles/new'>Add New Bottle</h4>
+<h4><a href='/logout'>Logout</h4> 
+
