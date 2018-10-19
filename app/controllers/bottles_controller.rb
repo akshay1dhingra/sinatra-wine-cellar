@@ -72,7 +72,19 @@ class BottlesController < ApplicationController
         redirect to '/bottles'
     end
 
-
+    delete '/bottles/:id/delete' do 
+        if logged_in?
+            @bottle = Bottle.find_by_id(params[:id])
+            if @bottle.user_id == current_user.id 
+                @bottle.delete
+                redirect to '/bottles'
+            else 
+                redirect to '/bottles'
+            end
+        else
+            redirect to '/bottles'
+        end
+    end
 
 end
 
