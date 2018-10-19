@@ -4,6 +4,7 @@ class BottlesController < ApplicationController
 
     get '/bottles' do 
         if logged_in?
+            # binding.pry
             erb :'bottles/bottles'
         else
             redirect to '/login'
