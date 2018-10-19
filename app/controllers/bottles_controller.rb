@@ -47,7 +47,7 @@ class BottlesController < ApplicationController
             redirect to '/login'
         end
     end
-    
+
 
     get '/bottles/:id/edit' do 
         if logged_in?
@@ -62,6 +62,15 @@ class BottlesController < ApplicationController
     end
 
 
+    patch '/bottles/:id/edit' do
+        @bottle = Bottle.find_by_id(params[:id])
+        @bottle.name = params[:name]
+        @bottle.grape = params[:grape]
+        @bottle.year = params[:year]
+        @bottle.location = params[:location]
+        @bottle.save 
+        redirect to '/bottles'
+    end
 
 
 
