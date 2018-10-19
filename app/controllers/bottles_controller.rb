@@ -11,6 +11,7 @@ class BottlesController < ApplicationController
         end
     end 
 
+
     get '/bottles/new' do 
         if logged_in? 
             erb :'bottles/create_bottle'
@@ -18,6 +19,7 @@ class BottlesController < ApplicationController
             redirect to '/login'
         end
     end
+
 
     post '/bottles/new' do 
         if logged_in?
@@ -33,6 +35,7 @@ class BottlesController < ApplicationController
         end
     end
 
+
     get '/bottles/:id' do
         if logged_in?
             if @bottle = current_user.bottles.find_by_id(params[:id])
@@ -41,6 +44,19 @@ class BottlesController < ApplicationController
                 redirect to '/bottles'
             end
         else 
+            redirect to '/login'
+        end
+    end
+    
+
+    get '/bottles/:id/edit' do 
+        if logged_in?
+            if @bottle = current_user.bottles.find_by_id(params[:id])
+                erb :'bottles/edit_bottle'
+            else
+                redirect to '/bottles'
+            end
+        else
             redirect to '/login'
         end
     end
