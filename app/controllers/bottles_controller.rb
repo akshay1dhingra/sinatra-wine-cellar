@@ -1,3 +1,5 @@
+require 'pry'
+
 class BottlesController < ApplicationController 
 
     get '/bottles' do 
@@ -16,4 +18,19 @@ class BottlesController < ApplicationController
         end
     end
 
+    post '/bottles/new' do 
+        if logged_in?
+            if params[:name] == "" || params[:grape] == "" || params[:year] == "" || params[:location] == ""
+                redirect to '/bottles/new'
+            else
+                # binding.pry
+                @bottle = current_user.bottles.create(name: params[:name], grape: params[:grape], year: params[:year], location: params[:location])
+                redirect to '/bottles'
+            end
+        else
+            redirect to '/login'
+        end
+    end
+
 end
+
