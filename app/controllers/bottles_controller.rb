@@ -5,7 +5,7 @@ class BottlesController < ApplicationController
     get '/bottles' do 
         if logged_in?
             # binding.pry
-            erb :'bottles/bottles'
+            erb :'bottles/index'
         else
             redirect to '/login'
         end
@@ -32,6 +32,22 @@ class BottlesController < ApplicationController
             redirect to '/login'
         end
     end
+
+    get '/bottles/:id' do
+        if logged_in?
+            if @bottle = current_user.bottles.find_by_id(params[:id])
+                erb :'bottles/show_bottle'
+            else
+                redirect to '/bottles'
+            end
+        else 
+            redirect to '/login'
+        end
+    end
+
+
+
+
 
 end
 
