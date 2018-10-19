@@ -13,7 +13,4 @@
 
 <br>
 
-<form action="/bottles/<%= @bottle.id %>/edit" method="PATCH">
-  <input type="hidden" name"_method" value="EDIT">
-  <input type="submit" value="Edit Bottle">
-</form>
+<a href="/bottles/<%=@bottle.id%>/edit">Edit Bottle</a><br>
