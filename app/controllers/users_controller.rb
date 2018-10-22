@@ -1,7 +1,15 @@
+require 'pry'
+
 class UsersController < ApplicationController 
 
     get '/index' do 
-        erb :'users/index'
+        # binding.pry
+        if logged_in?
+            @user = User.all.find(session[:user_id])
+            erb :'users/index'
+        else 
+            redirect '/login'
+        end
     end 
 
     get '/signup' do 
@@ -13,7 +21,10 @@ class UsersController < ApplicationController
     end 
 
     post '/signup' do
+        # binding.pry
         if params[:username] == "" || params[:email] == "" || params[:password] == ""
+            redirect '/signup'
+        elsif @user = User.find_by(username: params[:username]) || @user = User.find_by(email: params[:email])
             redirect '/signup'
         else 
             @user = User.new(username: params[:username], email: params[:email], password: params[:password])
