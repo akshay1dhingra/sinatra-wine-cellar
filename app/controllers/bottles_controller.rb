@@ -63,13 +63,19 @@ class BottlesController < ApplicationController
 
 
     patch '/bottles/:id/edit' do
-        @bottle = Bottle.find_by_id(params[:id])
-        @bottle.name = params[:name]
-        @bottle.grape = params[:grape]
-        @bottle.year = params[:year]
-        @bottle.location = params[:location]
-        @bottle.save 
-        redirect to '/bottles'
+        # @user = User.find_by(username: params[:username])
+        # raise params.inspect
+        if current_user.bottles.find_by_id(params[:id])
+            @bottle = Bottle.find_by_id(params[:id])
+            @bottle.name = params[:name]
+            @bottle.grape = params[:grape]
+            @bottle.year = params[:year]
+            @bottle.location = params[:location]
+            @bottle.save 
+            redirect to '/bottles'
+        else 
+            redirect to '/bottles/:id'
+        end
     end
 
     delete '/bottles/:id/delete' do 
